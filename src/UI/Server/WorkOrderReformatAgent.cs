@@ -29,6 +29,7 @@ public class WorkOrderReformatAgent(
                                Your tasks:
                                1. Correct the description for grammar and punctuation. Do not change the meaning.
                                2. Ensure the title starts with a capital letter. Do not change anything else about the title.
+                               3. Translate the Title and Description to the preferred language of the user.
 
                                If no changes are needed, respond with exactly: NO_CHANGES
 
