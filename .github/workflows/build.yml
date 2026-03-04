@@ -360,7 +360,7 @@ jobs:
   docker-build-image-for-churchbulletin-ui:
     name: Publish Release Candidate
     needs: [build-linux]
-    if: success() 
+    if: false
     runs-on: ubuntu-latest
     concurrency:
       # Stop publishing a release candidate if a newer job arrives.
@@ -498,7 +498,7 @@ jobs:
   publish-github-packages:
     name: Publish to GitHub Packages
     needs: [build-linux]
-    if: success()
+    if: false
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -532,7 +532,7 @@ jobs:
   publish-octopus:
     name: Publish to Octopus Deploy
     needs: [build-linux]
-    if: success()
+    if: false
     runs-on: ubuntu-latest
     permissions:
       contents: read
