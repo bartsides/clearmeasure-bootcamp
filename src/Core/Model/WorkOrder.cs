@@ -2,9 +2,14 @@ namespace ClearMeasure.Bootcamp.Core.Model;
 
 public class WorkOrder : EntityBase<WorkOrder>
 {
+    private string? _title = "";
     private string? _description = "";
 
-    public string? Title { get; set; } = "";
+    public string? Title
+    {
+        get => _title;
+        set => _title = toUpperCase(value);
+    }
 
     public string? Description
     {
@@ -30,6 +35,11 @@ public class WorkOrder : EntityBase<WorkOrder>
     public DateTime? CreatedDate { get; set; }
 
     public DateTime? CompletedDate { get; set; }
+
+    private static string? toUpperCase(string? value)
+    {
+        return value?.ToUpperInvariant() ?? string.Empty;
+    }
 
     private string? getTruncatedString(string? value)
     {

@@ -19,7 +19,7 @@ public class WorkOrderCompleteTests : AcceptanceTestBase
         order = await BeginExistingWorkOrder(order);
         order = await ClickWorkOrderNumberFromSearchPage(order);
 
-        var expectedTitle = "Title from automation";
+        var expectedTitle = "TITLE FROM AUTOMATION";
         var expectedDescription = "Description";
         order.Title = expectedTitle;
         order.Description = expectedDescription;

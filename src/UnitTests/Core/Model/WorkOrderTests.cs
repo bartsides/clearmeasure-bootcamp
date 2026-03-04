@@ -46,7 +46,7 @@ public class WorkOrderTests
         workOrder.Assignee = assignee;
 
         Assert.That(workOrder.Id, Is.EqualTo(guid));
-        Assert.That(workOrder.Title, Is.EqualTo("Title"));
+        Assert.That(workOrder.Title, Is.EqualTo("TITLE"));
         Assert.That(workOrder.Description, Is.EqualTo("Description"));
         Assert.That(workOrder.Status, Is.EqualTo(WorkOrderStatus.Complete));
         Assert.That(workOrder.Number, Is.EqualTo("Number"));
@@ -79,5 +79,37 @@ public class WorkOrderTests
         order.Status = WorkOrderStatus.Draft;
         order.ChangeStatus(WorkOrderStatus.Assigned);
         Assert.That(order.Status, Is.EqualTo(WorkOrderStatus.Assigned));
+    }
+
+    [Test]
+    public void ShouldForceUppercaseOnTitle()
+    {
+        var order = new WorkOrder();
+        order.Title = "my lowercase title";
+        Assert.That(order.Title, Is.EqualTo("MY LOWERCASE TITLE"));
+    }
+
+    [Test]
+    public void ShouldForceUppercaseOnMixedCaseTitle()
+    {
+        var order = new WorkOrder();
+        order.Title = "Mixed Case Title";
+        Assert.That(order.Title, Is.EqualTo("MIXED CASE TITLE"));
+    }
+
+    [Test]
+    public void ShouldHandleNullTitleGracefully()
+    {
+        var order = new WorkOrder();
+        order.Title = null;
+        Assert.That(order.Title, Is.EqualTo(string.Empty));
+    }
+
+    [Test]
+    public void ShouldHandleEmptyTitleGracefully()
+    {
+        var order = new WorkOrder();
+        order.Title = "";
+        Assert.That(order.Title, Is.EqualTo(string.Empty));
     }
 }
