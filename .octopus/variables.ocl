@@ -1,0 +1,126 @@
+variable "az_location" {
+    value "southcentralus" {}
+}
+
+variable "DatabaseName" {
+    value "ChurchBulletin-gh" {}
+}
+
+variable "DatabaseUser" {
+    value "#{Octopus.Environment.Name | ToLower}" {}
+
+}
+
+variable "revisionSuffix" {
+    value "#{Octopus.Release.Number}" {
+        environment = ["prod", "tdd", "uat"]
+    }
+}
+
+variable "container_image" {
+    value "#{registry_login_server}/churchbulletin.ui:#{Octopus.Release.Number}" {
+        environment = ["prod", "tdd", "uat"]
+    }
+}
+
+variable "registry_login_server" {
+    value "churchbulletingithubacr.azurecr.io" {
+        environment = ["prod", "tdd", "uat"]
+    }
+}
+
+variable "AzureAccount" {
+    type = "AzureAccount"
+
+    value "churchbulletin-gh-azure-account" {}
+}
+
+variable "DatabaseServerName" {
+    value "bootcamp-palermo-workorders-#{Octopus.Environment.Name | ToLower}" {
+        environment = ["prod", "uat"]
+    }
+
+    value "bootcamp-palermo-workorders" {
+        environment = ["tdd"]
+    }
+}
+
+variable "DatabaseServer" {
+    value "bootcamp-palermo-workorders-#{Octopus.Environment.Name | ToLower}.database.windows.net" {
+        environment = ["prod", "uat"]
+    }
+
+    value "bootcamp-palermo-workorders.database.windows.net" {
+        environment = ["tdd"]
+    }
+}
+
+variable "DatabaseAction" {
+    value "update" {
+        description="Database action to perform for migrations"
+    }
+}
+
+variable "DatabaseEdition" {
+    value "Basic" {
+        description = ""
+    }
+}
+
+variable "DatabasePerformanceLevel" {
+    value "Basic" {
+        description = ""
+    }
+}
+
+variable "az_login_appid" {
+    value "#{AzureAccount.Client}" {}
+}
+
+variable "az_login_appkey" {
+    value "#{AzureAccount.Password}" {}
+}
+
+variable "az_login_tenant" {
+    value "#{AzureAccount.TenantId}" {}
+}
+
+variable "OctoInstanceURL" {
+    value "https://clearmeasure.octopus.app/" {}
+}
+
+variable "EnsureEnvironmentsExist" {
+    value "False" {
+        environment = ["uat"]
+    }
+
+    value "False" {
+        environment = ["prod"]
+    }
+}
+
+variable "NuGetFeed" {
+    value "GitHub" {}
+}
+
+variable "container_app_name" {
+    value "ui-gh" {
+        description = ""
+    }
+}
+
+variable "container_app_environment_name" {
+    value "bootcamp-palermo-workorders-container-apps-#{Octopus.Environment.Name}-cae" {
+        description = ""
+    }
+}
+
+variable "ResourceGroupName" {
+    value "bootcamp-#{Octopus.Environment.Name | ToLower}" {
+        description = ""
+    }
+}
+
+variable "connection_string" {
+    value "#{container_app_connection_string}" {}
+}
