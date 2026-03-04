@@ -360,7 +360,7 @@ jobs:
   docker-build-image-for-churchbulletin-ui:
     name: Publish Release Candidate
     needs: [build-linux]
-    if: success() 
+    if: false # Disabled - Azure credentials not configured
     runs-on: ubuntu-latest
     concurrency:
       # Stop publishing a release candidate if a newer job arrives.
