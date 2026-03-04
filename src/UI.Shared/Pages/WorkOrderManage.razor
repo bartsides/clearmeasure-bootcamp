@@ -119,7 +119,7 @@
             {
                 <div data-testid="@Elements.ReadOnlyMessage" class="readonly-message">This work order is read-only for you at this time.</div>
             }
-            else
+            @if (ValidCommands.Any())
             {
                 <div class="action-buttons">
                     @foreach (var command in ValidCommands)
