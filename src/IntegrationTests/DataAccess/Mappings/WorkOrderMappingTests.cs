@@ -41,7 +41,7 @@ public class WorkOrderMappingTests
 
         rehydratedWorkOrder.Id.ShouldBe(workOrder.Id);
         rehydratedWorkOrder.Number.ShouldBe("WO-01");
-        rehydratedWorkOrder.Title.ShouldBe("Fix lighting");
+        rehydratedWorkOrder.Title.ShouldBe("FIX LIGHTING");
         rehydratedWorkOrder.Description.ShouldBe("Replace broken light bulbs in conference room");
         rehydratedWorkOrder.RoomNumber.ShouldBe("CR-101");
         rehydratedWorkOrder.Status.ShouldBe(WorkOrderStatus.Draft);

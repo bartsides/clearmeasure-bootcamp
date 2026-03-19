@@ -23,8 +23,8 @@ public class WorkOrderReformatAgentTests
     [Test]
     public void ShouldReturnNullWhenNoChangesNeeded()
     {
-        var workOrder = new WorkOrder { Title = "Same title", Description = "Same description" };
-        var responseText = "TITLE: Same title\nDESCRIPTION: Same description";
+        var workOrder = new WorkOrder { Title = "SAME TITLE", Description = "Same description" };
+        var responseText = "TITLE: SAME TITLE\nDESCRIPTION: Same description";
 
         var result = WorkOrderReformatAgent.ParseResponse(responseText, workOrder);
 
@@ -66,7 +66,7 @@ public class WorkOrderReformatAgentTests
         var result = WorkOrderReformatAgent.ParseResponse(responseText, workOrder);
 
         result.ShouldNotBeNull();
-        result.Title.ShouldBe("Original Title");
+        result.Title.ShouldBe("ORIGINAL TITLE");
         result.Description.ShouldBe("New corrected description.");
     }
 
